@@ -13,7 +13,7 @@ public enum ConnectionUtil {
     ConnectionUtil() {
         HikariConfig config = new HikariConfig();
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        config.setJdbcUrl("jdbc:mysql://localhost:3306/ssgdb?serverTimezone=Asia/Seoul");
+        config.setJdbcUrl("jdbc:mysql://localhost:3306/ssgdb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Seoul");
         config.setUsername("root");
         config.setPassword("root");
         config.addDataSourceProperty("cachePrepStmts", "true");

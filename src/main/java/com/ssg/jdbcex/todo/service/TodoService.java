@@ -46,14 +46,10 @@ public enum TodoService {
     }
 
     //사용자가 선택한 Todo 1개 반환하는 기능
-    public TodoDTO get(Long tno) {
-        TodoDTO dto = new TodoDTO();
-        dto.setTno(tno);
-        dto.setDuedate(LocalDate.now());
-        dto.setTitle("Sample DTO");
-        dto.setFinished(true);
-
-        return dto;
+    public TodoVO get(Long tno) throws Exception{
+        TodoDAO todoDAO = new TodoDAO();
+        TodoVO vo = todoDAO.selectOne(tno);
+        return vo;
     }
 
     public List<TodoDTO> listAll() throws Exception {

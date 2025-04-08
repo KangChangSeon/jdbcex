@@ -8,7 +8,15 @@
 <h1>Todo List Page</h1>
 <ul>
     <c:forEach var="dto" items="${list}">
-        <li>${dto}</li>
+        <li>
+            <a href="/todo/read?tno=${dto.tno}">${dto.tno}</a>
+                ${dto.title}
+                ${dto.duedate}
+            <c:choose>
+                <c:when test="${dto.finished}">DONE</c:when>
+                <c:otherwise>NOT YET</c:otherwise>
+            </c:choose>
+        </li>
     </c:forEach>
 </ul>
 

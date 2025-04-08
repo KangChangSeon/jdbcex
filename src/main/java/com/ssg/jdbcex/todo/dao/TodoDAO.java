@@ -37,15 +37,34 @@ public class TodoDAO {
     // tbl_todo 테이블에 todo 를 넣는 Insert 기능(TodoVO vo)
     public void insert(TodoVO vo) throws SQLException {
         // 쿼리문 생성
-        String sql = "INSERT INTO tbl_todo(title,duedate,finished) VALUES(?,?,?)";
+        String sql = "INSERT INTO tbl_todo(title,duedate) VALUES(?,?)";
         @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement ps = conn.prepareStatement(sql);
 
         ps.setString(1, vo.getTitle());
         ps.setDate(2, Date.valueOf(vo.getDuedate()));
-        ps.setBoolean(3, vo.isFinished());
 
         ps.executeUpdate();
+    }
+
+    public TodoVO selectOne(Long tno) throws Exception {
+        String sql = "SELECT * FROM tbl_todo WHERE tno = ?";
+        @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement ps = conn.prepareStatement(sql);
+
+        ps.setLong(1, tno);
+        @Cleanup ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            TodoVO vo1 = TodoVO.builder()
+                    .tno(rs.getLong("tno"))
+                    .title(rs.getString("title"))
+                    .duedate(rs.getDate("duedate").toLocalDate())
+                    .finished(rs.getBoolean("finished"))
+                    .build();
+            return vo1;
+        }
+        return null;
     }
 
     public List<TodoVO> selectAll() throws Exception{
