@@ -12,7 +12,10 @@
 </head>
 <body>
 <form action="/todo/register" method="post">
-    <button type="submit">등록</button>
+    <input type="text" name="title" placeholder="INSERT TITLE"><br>
+    <input type="date" name="date"><br>
+    <button type="reset">RESET</button>
+    <button type="submit">REGISTER</button>
 </form>
 </body>
 </html>

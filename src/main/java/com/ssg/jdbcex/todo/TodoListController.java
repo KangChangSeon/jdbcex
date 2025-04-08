@@ -2,6 +2,7 @@ package com.ssg.jdbcex.todo;
 
 import com.ssg.jdbcex.todo.dto.TodoDTO;
 import com.ssg.jdbcex.todo.service.TodoService;
+import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,14 +12,30 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "TodoListController", urlPatterns = "/com/ssg/jdbcex/todo/list")
+@Log4j2
+@WebServlet(name = "TodoListController", urlPatterns = "/todo/list")
 public class TodoListController extends HttpServlet {
+
+    private TodoService todoService = TodoService.INSTANCE;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("/com/ssg/jdbcex/todo/list");
+        log.info("/todo/list");
 
-        List<TodoDTO> dtoList = TodoService.INSTANCE.getList();
-        req.setAttribute("list", dtoList);
-        req.getRequestDispatcher("/WEB-INF/todo/list.jsp").forward(req,resp);
+        try {
+
+            List<TodoDTO> dtoList = todoService.listAll();
+            req.setAttribute("list", dtoList);
+            req.getRequestDispatcher("/WEB-INF/todo/list.jsp").forward(req,resp);
+
+        } catch (ServletException e) {
+            log.error(e);
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            log.error(e);
+            throw new IOException(e);
+        } catch (Exception e) {
+            log.error(e);
+        }
     }
 }

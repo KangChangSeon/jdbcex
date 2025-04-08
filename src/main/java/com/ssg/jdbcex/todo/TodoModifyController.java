@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "TodoModifyController", urlPatterns = "/com/ssg/jdbcex/todo/modify")
+@WebServlet(name = "TodoModifyController", urlPatterns = "/todo/modify")
 public class TodoModifyController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
