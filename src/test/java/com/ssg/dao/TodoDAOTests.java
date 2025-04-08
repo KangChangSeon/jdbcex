@@ -2,10 +2,12 @@ package com.ssg.dao;
 
 import com.ssg.jdbcex.todo.dao.TodoDAO;
 import com.ssg.jdbcex.todo.domain.TodoVO;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 // 단위 테스트
 public class TodoDAOTests {
@@ -34,5 +36,40 @@ public class TodoDAOTests {
                 .finished(false)
                 .build();
         todoDAO.insert(vo);
+    }
+
+    @Test
+    public void testList() throws Exception {
+        List<TodoVO> voList = todoDAO.selectAll();
+
+        Assertions.assertNotNull(voList);
+        Assertions.assertFalse(voList.isEmpty());
+
+        voList.forEach(System.out::println);
+    }
+
+    @Test
+    public void testDelete() throws Exception {
+        Long ctno = 9L;
+
+        todoDAO.deleteOne(ctno);
+
+        List<TodoVO> list = todoDAO.selectAll();
+        boolean exists = list.stream().anyMatch(todo -> todo.getTno() == ctno);
+
+        Assertions.assertFalse(exists,"삭제가 되지 않았습니다.");
+    }
+
+    @Test
+    public void testUpdate() throws Exception {
+        TodoVO vo = TodoVO.builder()
+                .tno(4L)
+                .title("수정")
+                .duedate(LocalDateTime.now())
+                .finished(false)
+                .build();
+        todoDAO.updateOne(vo);
+
+        todoDAO.selectAll().forEach(System.out::println);
     }
 }
