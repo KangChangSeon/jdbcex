@@ -42,11 +42,19 @@ public class ConnectTests {
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
 
-        // HikariDataSource --> ConnectionPool 객체
-        HikariDataSource ds = new HikariDataSource(config);
-        Connection conn = ds.getConnection();
-        Assertions.assertNotNull(conn);
-        System.out.println(conn);
-        conn.close();
+//        // HikariDataSource --> ConnectionPool 객체
+//        HikariDataSource ds = new HikariDataSource(config);
+//        Connection conn = ds.getConnection();
+//        Assertions.assertNotNull(conn);
+//        System.out.println(conn);
+//        conn.close();
+
+        // try-with-resource 구문을 사용하여 conn 과 ds 를
+        // 자동으로 닫아서 안전하게 테스트를 종료
+        try (HikariDataSource ds = new HikariDataSource(config);
+             Connection conn = ds.getConnection()) {
+            Assertions.assertNotNull(conn);
+            System.out.println(conn);
+        }
     }
 }
