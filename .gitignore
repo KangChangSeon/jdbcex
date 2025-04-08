@@ -1,14 +1,14 @@
 # Ignore all files and folders by default
 *
 
-# Allow src directory
+# Allow src directory and its contents
 !src/
-
-# Allow everything under src
 !src/**
 
+# Exclude other common directories and files
+
 # Gradle
-.gradle
+.gradle/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 
@@ -45,3 +45,8 @@ bin/
 
 # Mac OS
 .DS_Store
+
+# Gradle Wrapper Files
+gradlew
+gradlew.bat
+.gradle/
