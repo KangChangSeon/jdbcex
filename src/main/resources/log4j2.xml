@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!-- XML 버전과 인코딩 선언 -->
+<Configuration status="WARN"> <!-- Log4j2 설정 시작, 내부 경고 로그 레벨을 WARN으로 설정 -->
+    <Appenders> <!-- 로그를 출력할 대상(Appender)을 정의하는 블록 -->
+        <!-- 콘솔에 로그를 출력하는 설정 -->
+        <Console name="Console" target="SYSTEM_OUT"> <!-- Console Appender 설정, 표준 출력(SYSTEM_OUT)을 사용 -->
+            <!-- 로그 출력 형식을 지정하는 PatternLayout 설정 -->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/> <!-- 로그 패턴 정의 -->
+        </Console>
+    </Appenders>
+
+    <!-- 루트 로거 설정을 통해 기본 로그 레벨과 Appender를 지정 -->
+    <Loggers> <!-- 로그를 기록할 로거들을 정의하는 블록 -->
+        <!-- 모든 로그에 적용되는 기본 설정 -->
+        <Root level="info"> <!-- 로그 레벨을 INFO로 설정하여 INFO 이상 로그만 출력 -->
+            <AppenderRef ref="Console"/> <!-- Console Appender로 로그를 출력하도록 지정 -->
+        </Root>
+    </Loggers>
+</Configuration>

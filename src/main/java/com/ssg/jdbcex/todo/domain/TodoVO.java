@@ -1,17 +1,17 @@
 package com.ssg.jdbcex.todo.domain;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Builder
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class TodoVO {
     private Long tno;
     private String title;
-    private LocalDateTime duedate;
+    private LocalDate duedate;
     private boolean finished;
 }

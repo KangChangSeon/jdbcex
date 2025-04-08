@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class TodoDAOTests {
     public void testInsert() throws Exception {
         TodoVO vo = TodoVO.builder()
                 .title("다섯")
-                .duedate(LocalDateTime.now())
+                .duedate(LocalDate.now())
                 .finished(false)
                 .build();
         todoDAO.insert(vo);
@@ -65,7 +66,7 @@ public class TodoDAOTests {
         TodoVO vo = TodoVO.builder()
                 .tno(4L)
                 .title("수정")
-                .duedate(LocalDateTime.now())
+                .duedate(LocalDate.now())
                 .finished(false)
                 .build();
         todoDAO.updateOne(vo);

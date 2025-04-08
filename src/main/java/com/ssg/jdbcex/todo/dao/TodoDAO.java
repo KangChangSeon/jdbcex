@@ -42,7 +42,7 @@ public class TodoDAO {
         @Cleanup PreparedStatement ps = conn.prepareStatement(sql);
 
         ps.setString(1, vo.getTitle());
-        ps.setDate(2, Date.valueOf(vo.getDuedate().toLocalDate()));
+        ps.setDate(2, Date.valueOf(vo.getDuedate()));
         ps.setBoolean(3, vo.isFinished());
 
         ps.executeUpdate();
@@ -60,7 +60,7 @@ public class TodoDAO {
                     .tno(rs.getLong("tno"))
                     .title(rs.getString("title"))
 //                    .duedate(rs.getDate("duedate").toLocalDate().atStartOfDay())
-                    .duedate(rs.getTimestamp("duedate").toLocalDateTime())
+                    .duedate(rs.getDate("duedate").toLocalDate())
                     .finished(rs.getBoolean("finished"))
                     .build();
             list.add(vo);
@@ -85,7 +85,7 @@ public class TodoDAO {
         @Cleanup PreparedStatement ps = conn.prepareStatement(sql);
 
         ps.setString(1, vo.getTitle());
-        ps.setDate(2, Date.valueOf(vo.getDuedate().toLocalDate()));
+        ps.setDate(2, Date.valueOf(vo.getDuedate()));
         ps.setBoolean(3, vo.isFinished());
         ps.setLong(4,vo.getTno());
         ps.executeUpdate();

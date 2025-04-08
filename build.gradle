@@ -44,6 +44,9 @@ dependencies {
     // HikariCP
     implementation group: 'com.zaxxer', name: 'HikariCP', version: '5.0.0'
 
+    // ModelMapper
+    implementation("org.modelmapper:modelmapper:3.0.0")
+
     // JSTL 의존성
     implementation 'jstl:jstl:1.2'
 }
