@@ -4,6 +4,7 @@ import com.ssg.jdbcex.todo.dto.TodoDTO;
 import com.ssg.jdbcex.todo.service.TodoService;
 import lombok.extern.log4j.Log4j2;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,9 +22,10 @@ public class TodoListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         log.info("/todo/list");
+        ServletContext servletContext = getServletContext();
+        log.info("servletContext=" + servletContext.getAttribute("appName"));
 
         try {
-
             List<TodoDTO> dtoList = todoService.listAll();
             req.setAttribute("list", dtoList);
             req.getRequestDispatcher("/WEB-INF/todo/list.jsp").forward(req,resp);
