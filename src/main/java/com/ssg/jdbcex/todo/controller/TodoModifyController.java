@@ -36,10 +36,6 @@ public class TodoModifyController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("doPost ... Modify");
 
-        // 한글 폰트 깨져서 적용 (SSR 방식)
-        req.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html; charset=UTF-8");
-
         Long tno = Long.valueOf(req.getParameter("tno"));
         String title = req.getParameter("title");
         Date duedate = Date.valueOf(req.getParameter("duedate"));

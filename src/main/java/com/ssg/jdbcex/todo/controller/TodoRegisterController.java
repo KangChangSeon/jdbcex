@@ -30,21 +30,12 @@ public class TodoRegisterController extends HttpServlet {
             return;
         }
 
-        if (session.getAttribute("loginInfo") == null) {
-            log.info("로그인 정보가 없는 사용자");
-            resp.sendRedirect(req.getContextPath()+"/login");
-            return;
-        }
-
         req.getRequestDispatcher("/WEB-INF/todo/register.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("입력을 처리하고 목록 페이지로 이동할거야");
-        // 한글 폰트 깨져서 적용 (SSR 방식)
-        req.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html; charset=UTF-8");
 
         String title = req.getParameter("title");
         Date duedate = Date.valueOf(req.getParameter("duedate"));
