@@ -1,5 +1,7 @@
 package com.ssg.jdbcex.todo.controller;
 
+import com.ssg.jdbcex.todo.dto.MemberDTO;
+import com.ssg.jdbcex.todo.service.MemberService;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
@@ -16,7 +18,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         log.info("login get....");
-        req.getRequestDispatcher("/WEB-INF/todo/login.jsp").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/todo/login.jsp").forward(req, resp);
     }
 
     @Override
@@ -25,9 +27,13 @@ public class LoginController extends HttpServlet {
         String mid = req.getParameter("mid");
         String mpwd = req.getParameter("mpwd");
 
-        String str = mid+mpwd;
-        HttpSession session = req.getSession();
-        session.setAttribute("loginInfo", str);
-        resp.sendRedirect(req.getContextPath()+"/todo/list");
+        try {
+            MemberDTO dto = MemberService.INSTANCE.login(mid, mpwd);
+            HttpSession session = req.getSession();
+            session.setAttribute("loginInfo", dto);
+            resp.sendRedirect(req.getContextPath() + "/todo/list");
+        } catch (Exception e) {
+            resp.sendRedirect(req.getContextPath() + "/login?result=error");
+        }
     }
 }
