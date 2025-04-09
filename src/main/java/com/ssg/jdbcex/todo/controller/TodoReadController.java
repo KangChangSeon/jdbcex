@@ -1,8 +1,6 @@
-package com.ssg.jdbcex.todo;
+package com.ssg.jdbcex.todo.controller;
 
-import com.ssg.jdbcex.todo.dao.TodoDAO;
 import com.ssg.jdbcex.todo.domain.TodoVO;
-import com.ssg.jdbcex.todo.dto.TodoDTO;
 import com.ssg.jdbcex.todo.service.TodoService;
 
 import javax.servlet.ServletException;
