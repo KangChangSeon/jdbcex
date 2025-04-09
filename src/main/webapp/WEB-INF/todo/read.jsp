@@ -8,9 +8,9 @@
 <input type="text" name="tno" value="${dto.tno}"><br>
 <input type="text" name="title" value="${dto.title}"><br>
 <input type="date" name="duedate" value="${dto.duedate}"><br>
-<input type="checkbox" name="finished"
+<input type="checkbox" name="finished" disabled
        <c:if test="${dto.finished}">checked</c:if>><br>
-<a href="/todo/modify">Modify/Remove</a>
+<a href="/todo/modify?tno=${dto.tno}">Modify/Remove</a>
 <a href="/todo/list">list</a>
 
 </body>

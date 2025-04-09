@@ -1,5 +1,6 @@
 package com.ssg.jdbcex.todo;
 
+import com.ssg.jdbcex.todo.dao.TodoDAO;
 import com.ssg.jdbcex.todo.domain.TodoVO;
 import com.ssg.jdbcex.todo.dto.TodoDTO;
 import com.ssg.jdbcex.todo.service.TodoService;
@@ -26,6 +27,6 @@ public class TodoReadController extends HttpServlet {
             throw new RuntimeException(e);
         }
         req.setAttribute("dto", dto);
-        req.getRequestDispatcher("/WEB-INF/todo/read.jsp").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/todo/read.jsp").forward(req, resp);
     }
 }
