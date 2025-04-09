@@ -31,7 +31,7 @@ public class TodoRegisterController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("입력을 처리하고 목록 페이지로 이동할거야");
-        // 한글 폰트 깨져서 적용
+        // 한글 폰트 깨져서 적용 (SSR 방식)
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
 
